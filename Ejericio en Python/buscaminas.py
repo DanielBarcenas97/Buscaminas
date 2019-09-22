@@ -65,16 +65,6 @@ def bombasActivas(mapa,renglones,columnas):
                     check(mapa,i,j-1)
                     check(mapa,i+1,j)
                     check(mapa,i+1,j-1)
-            elif(i>0 and j>0):
-                if mapa[i][j] == '*':
-                    check(mapa,i,j+1)
-                    check(mapa,i,j-1)
-                    check(mapa,i+1,j)
-                    check(mapa,i-1,j)
-                    check(mapa,i+1,j-1)
-                    check(mapa,i+1,j+1)
-                    check(mapa,i-1,j+1)
-                    check(mapa,i-1,j-1)
             elif(i>0 and j==0):
                 if mapa[i][j] == '*':
                     check(mapa,i,j+1)
@@ -102,6 +92,16 @@ def bombasActivas(mapa,renglones,columnas):
                     check(mapa,i+1,j)
                     check(mapa,i,j-1)
                     check(mapa,i+1,j-1)
+                    check(mapa,i-1,j-1)
+            elif(i>0 and j>0):
+                if mapa[i][j] == '*':
+                    check(mapa,i,j+1)
+                    check(mapa,i,j-1)
+                    check(mapa,i+1,j)
+                    check(mapa,i-1,j)
+                    check(mapa,i+1,j-1)
+                    check(mapa,i+1,j+1)
+                    check(mapa,i-1,j+1)
                     check(mapa,i-1,j-1)
   
 
