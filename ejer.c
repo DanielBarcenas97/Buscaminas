@@ -30,10 +30,10 @@ void imprimeMatriz (int **arregloMapa2, int n, int m) {
 }
 
 void Check(int **arregloMapa2, int i, int j){
-    if(arregloMapa2[i][j+1]  == '*' ){
-        arregloMapa2[i][j+1]  = '*'
+    if(arregloMapa2[i][j]  == '*' ){
+        arregloMapa2[i][j]  = '*';
     }else{
-        arregloMapa2[i][j+1] += 1;
+        arregloMapa2[i][j] += 1;
     }
 }
 
@@ -42,7 +42,6 @@ void bombasActivas(int **arregloMapa2, int renglones, int columnas) {
 	for (i = 0; i < renglones; i++){
             for (j = 0; j < columnas; j++){
                 printf("-->%d ",arregloMapa2[i][j]);
-            
                 if(i>0 && j>0){
                     if (arregloMapa2[i][j] == '*'){
                         arregloMapa2[i][j+1] += 1;
@@ -117,6 +116,85 @@ void bombasActivas(int **arregloMapa2, int renglones, int columnas) {
         }
 }
 
+void bombasActivas2(int **arregloMapa2, int renglones, int columnas) {
+	int i,j;
+	for (i = 0; i < renglones; i++){
+            for (j = 0; j < columnas; j++){
+                printf("-->%d ",arregloMapa2[i][j]);
+                if(i>0 && j>0){
+                    if (arregloMapa2[i][j] == '*'){
+                        Check(arregloMapa2,i,j+1);
+                        Check(arregloMapa2,i,j-1);
+                        Check(arregloMapa2,i+1,j);
+                        Check(arregloMapa2,i+1,j-1);
+                        Check(arregloMapa2,i+1,j+1);
+                        Check(arregloMapa2,i-1,j-1);
+                        Check(arregloMapa2,i-1,j+1);
+                        Check(arregloMapa2,i-1,j);
+                    }
+                }else if(i==0 && j==0){
+                    if (arregloMapa2[i][j] == '*'){
+                        Check(arregloMapa2,i,j+1);
+                        Check(arregloMapa2,i+1,j);
+                        Check(arregloMapa2,i+1,j+1);
+                    }
+                } else if(i==0 && j==columnas){
+                    if (arregloMapa2[i][j] == '*'){
+                        Check(arregloMapa2,i,j-1);
+                        Check(arregloMapa2,i+1,j);
+                        Check(arregloMapa2,i+1,j-1); 
+ 
+                    }
+                } else if(i==renglones && j==columnas){
+                    if (arregloMapa2[i][j] == '*'){
+                        Check(arregloMapa2,i,j-1);
+                        Check(arregloMapa2,i-1,j-1);
+                        Check(arregloMapa2,i-1,j);
+                    }
+                } else  if(i==renglones && j==0){
+                    if (arregloMapa2[i][j] == '*'){
+                        Check(arregloMapa2,i,j+1);
+                        Check(arregloMapa2,i-1,j);
+                        Check(arregloMapa2,i-1,j+1);
+                    }
+                }else if(i==0 && j>0){
+                    if (arregloMapa2[i][j] == '*'){
+                        Check(arregloMapa2,i,j-1);
+                        Check(arregloMapa2,i,j+1);
+                        Check(arregloMapa2,i+1,j); 
+                        Check(arregloMapa2,i+1,j+1); 
+                        Check(arregloMapa2,i+1,j-1);
+                    }
+                } else  if(i>0 && j==0){
+                    if (arregloMapa2[i][j] == '*'){
+                        Check(arregloMapa2,i,j+1);
+                        Check(arregloMapa2,i-1,j);
+                        Check(arregloMapa2,i+1,j);
+                        Check(arregloMapa2,i+1,j+1);
+                        Check(arregloMapa2,i-1,j+1);
+                    }
+                }else  if(i==renglones && j>0){
+                    if (arregloMapa2[i][j] == '*'){
+                        Check(arregloMapa2,i,j+1);
+                        Check(arregloMapa2,i,j-1);
+                        Check(arregloMapa2,i-1,j);
+                        Check(arregloMapa2,i-1,j+1);
+                        Check(arregloMapa2,i-1,j-1);
+                    }
+                } else if(i>0 && j==columnas){
+                    if (arregloMapa2[i][j] == '*'){
+                        Check(arregloMapa2,i+1,j);
+                        Check(arregloMapa2,i-1,j);
+                        Check(arregloMapa2,i,j-1);
+                        Check(arregloMapa2,i+1,j-1);
+                        Check(arregloMapa2,i-1,j-1);
+                    }
+                }
+            }
+            printf("\n");
+        }
+}
+
 int main(int argv, char **args){
     char **nombreArchivo = &args[1];
 	FILE *archivo;
@@ -159,7 +237,7 @@ int main(int argv, char **args){
             }            
 	    }
         //Lugar donde estan las bombas
-        bombasActivas(arregloMapa2,renglones,columnas);
+        bombasActivas2(arregloMapa2,renglones,columnas);
         imprimeMatriz(arregloMapa2,renglones,columnas);
     }
     fclose(archivo);
