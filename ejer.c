@@ -38,10 +38,10 @@ void bombasActivas2(int **arregloMapa2, int renglones, int columnas) {
 	int i,j;
     int d;
     d=renglones*columnas;
-    printf("%d \n",d );
+    //printf("%d \n",d );
 	for (i = 0; i < renglones; i++){
         for (j = 0; j < columnas; j++){
-                printf("%d %d \n",i, j); 
+                //printf("%d %d \n",i, j); 
                 if(i>0 && j>0){  //Centro 
                     if (arregloMapa2[i][j] == '*'){
                         Check(arregloMapa2,i,j+1);
@@ -54,7 +54,6 @@ void bombasActivas2(int **arregloMapa2, int renglones, int columnas) {
                         Check(arregloMapa2,i-1,j);
                     }
                 }else if(i==0 && j==0 && d!=1){  //Coordenanda 0,0
-                   //printf("jajaj %d", j); 
                     if (arregloMapa2[i][j] == '*'){
                         Check(arregloMapa2,i,j+1);
                         Check(arregloMapa2,i+1,j);
@@ -68,7 +67,7 @@ void bombasActivas2(int **arregloMapa2, int renglones, int columnas) {
                         Check(arregloMapa2,i+1,j-1); 
  
                     }
-                } else if(i==renglones-1 && j==columnas-1 ){ //inferior derecha
+                }else if(i==renglones-1 && j==columnas-1 ){ //inferior derecha
                     if (arregloMapa2[i][j] == '*'){
                         Check(arregloMapa2,i,j-1);
                         Check(arregloMapa2,i-1,j-1);
